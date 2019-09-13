@@ -1,61 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>DECALOGO</title>
+<meta charset="utf-8">
+	<title>geo localizacion</title>
+<script type="text/javascript">
+function loadLocation () {
+	//inicializamos la funcion y definimos  el tiempo maximo ,las funciones de error y exito.
+	navigator.geolocation.getCurrentPosition(viewMap,ViewError,{timeout:1000});
+}
 
-    <!-- Bootstrap CSS File  -->
-    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-C++cugH8+Uf86JbNOnQoBweHHAe/wVKN/mb0lTybu/NZ9sEYbd+BbbYtNpWYAsNP" crossorigin="anonymous">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+//Funcion de exito
+function viewMap (position) {
+	
+	var lon = position.coords.longitude;	//guardamos la longitud
+	var lat = position.coords.latitude;		//guardamos la latitud
+
+	var link = "http://maps.google.com/?ll="+lat+","+lon+"&z=14";
+	document.getElementById("long").innerHTML = "Longitud: "+lon;
+	document.getElementById("latitud").innerHTML = "Latitud: "+lat;
+
+	document.getElementById("link").href = link;
+
+}
+
+
+
+function ViewError (error) {
+	alert(error.code);
+}	
+
+
+
+	</script>
+	
 </head>
+<body onload="loadLocation();">
+<label id="long"></label> <br/>
+<label id="latitud"></label> <br/>
+<a id="link" target="_blank">Enlace al mapa</a>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-expand-sm navbar-dark bg-primary">
-        <img src="./images/logoumg2.png">
-        <a class="navbar-brand" href="#"> </a>
-        <h1 style="color: white">DECÁLOGO DE UN INGENIERO EN SISTEMAS DE INFORMACIÓN</h1>
-        <h6 class="text-center">"Y conoceréis la verdad y la verdad os hará libres". Juan 8:32</h6>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <form class="form-inline my-2 my-lg-0">
-                </form>
-        </div>
-    </nav>
-
-    <div class="container col-12 mt-4">
-        <div class="container col-12 shadow-lg ui fluid raised card mt-4" style="background: #EAF2F8">
-            <h4 class="mt-4" style="color: black">1. SIEMPRE MANTENER EN ALTO EL PRESTIGIO DE LA PROFESIÓN.</h4>
-            <h4 class="mt-4" style="color: black">2. NO ROBAR INFORMACIÓN, HACER PLAGIOS O PIRATEAR SOFTWARE AJENO.</h4>
-            <h4 class="mt-4" style="color: black">3. DAR LO MEJOR DE SI MISMO EN CADA TRABAJO SOLICITADO, DEJANDO EN
-                EVIDENCIA EL PROFESIONALISMO.</h4>
-            <h4 class="mt-4" style="color: black">4. NO REALIZAR TRABAJOS QUE PUEDAN SER UTILIZADOS EN ACTOS DE
-                CORRUPCIÓN.</h4>
-            <h4 class="mt-4" style="color: black">5.</h4>
-            <h4 class="mt-4" style="color: black">6.</h4>
-            <h4 class="mt-4" style="color: black">7.</h4>
-            <h4 class="mt-4" style="color: black">8.</h4>
-            <h4 class="mt-4" style="color: black">9.</h4>
-            <h4 class="mt-4" style="color: black">10.</h4>
-            <label class="mt-4"></label>
-        </div>
-    </div>
-
-    <footer class="mt-4 card-footer mt-4" style="background:#EBF5FB">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <p>Made by <a href="" style="color:black"><br> Josué Isael Bonilla Matías 0907-16-10278 <br>
-                            Kevin Geovany Lima Sánchez 0907-16-15019 <br>Diana Leonor Ureta Cruz 0907-16-04045</a></p>
-                    <h6 style="color: black">UMG Extensión Jalapa 2019 <br> All rights reserved</h6>
-                </div>
-            </div>
-        </div>
-    </footer>
 
 </body>
-
 </html>
